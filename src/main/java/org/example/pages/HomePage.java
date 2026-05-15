@@ -15,20 +15,26 @@ public class HomePage extends BasePage {
     @FindBy(css = "[data-test='product-sort-container']")
     private WebElement buttonFilter;
 
-    @FindBy(css = "[option='az']")
+    @FindBy(css = "option[value='az']")
     private WebElement optionAz;
 
-    @FindBy(css = "option['za']")
+    @FindBy(css = "option[value='za']")
     private WebElement optionZa;
 
-    @FindBy(css = "option['lohi']")
+    @FindBy(css = "option[value='lohi']")
     private WebElement optionLohi;
 
-    @FindBy(css = "option['hilo']")
+    @FindBy(css = "option[value='hilo']")
     private WebElement optionHilo;
 
     @FindBy(css = "[data-test='inventory-item-name']")
     private WebElement titleSortZ;
+
+    @FindBy(css = "[data-test='inventory-item-price']")
+    private WebElement priceLow;
+
+    @FindBy(css = "[data-test='inventory-item-price']")
+    private WebElement priceHigh;
 
     //PRODUCT
     @FindBy(css = "[data-test='inventory-item-name']")
@@ -82,10 +88,24 @@ public class HomePage extends BasePage {
     }
 
     //SORT ITEM BY NAME Z TO A
-    public void     sortItemZToA() {
+    public void sortItemZToA() {
         waitForElementToBeVisible(buttonFilter);
         buttonFilter.click();
         optionZa.click();
+    }
+
+    //SORT ITEM BY PRICE LOW TO HIGH
+    public void sortItemLoToHi() {
+        waitForElementToBeVisible(buttonFilter);
+        buttonFilter.click();
+        optionLohi.click();
+    }
+
+    //SORT ITEM BY PRICE HIGH TO LOW
+    public void sortItemHiToLo() {
+        waitForElementToBeVisible(buttonFilter);
+        buttonFilter.click();
+        optionHilo.click();
     }
 
     //VERIFY TITTLE PRODUCT
@@ -123,6 +143,26 @@ public class HomePage extends BasePage {
         try {
             waitForElementToBeVisible(titleSortZ);
             return titleSortZ.isDisplayed() && titleSortZ.getText().equals("Test.allTheThings() T-Shirt (Red)");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    //VERIFY SORT PRODUCT BY PRICE LOW TO HIGH
+    public boolean isUserDisplayedSortByPriceLotoHi() {
+        try {
+            waitForElementToBeVisible(priceLow);
+            return priceLow.isDisplayed() && priceLow.getText().equals("7.99");
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    //VERIFY SORT PRODUCT BY PRICE HIGH TO LOW
+    public boolean isUserDisplayedSortByPriceHiToLo() {
+        try {
+            waitForElementToBeVisible(priceHigh);
+            return priceHigh.isDisplayed() && priceHigh.getText().equals("49.99");
         } catch (Exception e) {
             return false;
         }

@@ -30,10 +30,10 @@ public class HomePage extends BasePage {
     @FindBy(css = "[data-test='inventory-item-name']")
     private WebElement titleSortZ;
 
-    @FindBy(css = "[data-test='inventory-item-price']")
+    @FindBy(css = "[data-test='inventory-item-name']")
     private WebElement priceLow;
 
-    @FindBy(css = "[data-test='inventory-item-price']")
+    @FindBy(css = "[data-test='inventory-item-name']")
     private WebElement priceHigh;
 
     //PRODUCT
@@ -98,6 +98,7 @@ public class HomePage extends BasePage {
     public void sortItemLoToHi() {
         waitForElementToBeVisible(buttonFilter);
         buttonFilter.click();
+        waitForElementToBeVisible(optionLohi);
         optionLohi.click();
     }
 
@@ -105,6 +106,7 @@ public class HomePage extends BasePage {
     public void sortItemHiToLo() {
         waitForElementToBeVisible(buttonFilter);
         buttonFilter.click();
+        waitForElementToBeVisible(optionHilo);
         optionHilo.click();
     }
 
@@ -152,7 +154,7 @@ public class HomePage extends BasePage {
     public boolean isUserDisplayedSortByPriceLotoHi() {
         try {
             waitForElementToBeVisible(priceLow);
-            return priceLow.isDisplayed() && priceLow.getText().equals("7.99");
+            return priceLow.isDisplayed() && priceLow.getText().equals("Sauce Labs Onesie");
         } catch (Exception e) {
             return false;
         }
@@ -162,7 +164,7 @@ public class HomePage extends BasePage {
     public boolean isUserDisplayedSortByPriceHiToLo() {
         try {
             waitForElementToBeVisible(priceHigh);
-            return priceHigh.isDisplayed() && priceHigh.getText().equals("49.99");
+            return priceHigh.isDisplayed() && priceHigh.getText().equals("Sauce Labs Fleece Jacket");
         } catch (Exception e) {
             return false;
         }

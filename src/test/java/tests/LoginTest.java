@@ -16,7 +16,7 @@ public class LoginTest extends BaseTest {
 
     private static final Logger logger = LogManager.getLogger(LoginTest.class);
 
-    @Test(priority = 3, groups = {"smoke"}, description = "Test successful login")
+    @Test(priority = 1, groups = {"smoke"}, description = "Test successful login")
     public void testLogin() {
         logger.info("Memulai test login dengan credenrial standard user");
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());

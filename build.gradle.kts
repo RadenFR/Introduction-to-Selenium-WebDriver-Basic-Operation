@@ -1,11 +1,8 @@
 plugins {
     id("java")
 }
-
-
 group = "org.example"
 version = "1.0-SNAPSHOT"
-
 
 repositories {
     mavenCentral()
@@ -18,6 +15,7 @@ java {
 }
 
 dependencies {
+    //testImplementation("org.testng:testng:7.11.0")
     testImplementation("org.testng:testng:7.10.2")
     implementation("org.seleniumhq.selenium:selenium-java:4.35.0")
     implementation("io.github.bonigarcia:webdrivermanager:6.3.2")
@@ -27,9 +25,7 @@ dependencies {
     implementation("org.apache.poi:poi-ooxml:5.4.1")
     implementation("org.apache.logging.log4j:log4j-core:2.25.1")
     implementation("org.apache.logging.log4j:log4j-api:2.25.1")
-    implementation("commons-io:commons-io:2.15.1")
 }
-
 
 tasks.test {
     useTestNG {
@@ -44,6 +40,7 @@ tasks.test {
             systemProperty("env", project.property("env") as String)
         }
     }
+    maxParallelForks = Runtime.getRuntime().availableProcessors().coerceAtMost(2)
     testLogging {
         events("passed", "skipped", "failed", "standardOut", "standardError")
         showExceptions = true
@@ -52,4 +49,3 @@ tasks.test {
         exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
     }
 }
-

@@ -37,7 +37,7 @@ public class LoginTest extends BaseTest {
                 "User should not see any error message after successful login");
     }
 
-    @Test(priority = 2, description = "Test failed login scenario")
+    @Test(priority = 2, groups = {"smoke"}, description = "Test failed login scenario")
     public void testFailedLogin() {
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
         loginPage.login(config.getProperty("failedUser"), config.getProperty("password"));
